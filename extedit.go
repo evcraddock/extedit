@@ -36,6 +36,7 @@ func (s *Session) Invoke(content io.Reader) (Diff, error) {
 		return d, err
 	}
 
+	defer os.Remove(fileName)
 	cmd := editorCmd(fileName)
 	err = cmd.Run()
 	if err != nil {
